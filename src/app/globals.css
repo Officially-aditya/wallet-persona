@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
+@theme {
+  --color-error: #ffb4ab;
+  --color-on-tertiary-fixed-variant: #810081;
+  --color-surface: #121317;
+  --color-primary-fixed-dim: #50e304;
+  --color-on-tertiary: #5b005b;
+  --color-surface-variant: #343439;
+  --color-secondary: #d3fbff;
+  --color-primary-container: #6cff32;
+  --color-on-primary: #0e3900;
+  --color-surface-bright: #38393d;
+  --color-inverse-on-surface: #2f3034;
+  --color-surface-container: #1e1f23;
+  --color-on-primary-container: #247200;
+  --color-primary: #fbfff2;
+  --color-on-error-container: #ffdad6;
+  --color-inverse-surface: #e3e2e7;
+  --color-on-secondary-fixed: #002022;
+  --color-on-background: #e3e2e7;
+  --color-outline-variant: #3d4b36;
+  --color-on-secondary-container: #00686f;
+  --color-surface-container-low: #1a1b1f;
+  --color-tertiary-fixed-dim: #ffabf3;
+  --color-background: #121317;
+  --color-on-tertiary-container: #b100b1;
+  --color-surface-container-high: #292a2e;
+  --color-primary-fixed: #7cff4a;
+  --color-on-surface: #e3e2e7;
+  --color-on-secondary-fixed-variant: #004f54;
+  --color-surface-dim: #121317;
+  --color-outline: #87957c;
+  --color-on-primary-fixed-variant: #175200;
+  --color-inverse-primary: #226d00;
+  --color-surface-container-lowest: #0d0e12;
+  --color-on-error: #690005;
+  --color-on-secondary: #00363a;
+  --color-tertiary-container: #ffd4f5;
+  --color-on-surface-variant: #bccbb0;
+  --color-error-container: #93000a;
+  --color-tertiary: #fffcff;
+  --color-secondary-fixed-dim: #00dbe9;
+  --color-on-tertiary-fixed: #380038;
+  --color-secondary-container: #00eefc;
+  --color-on-primary-fixed: #052100;
+  --color-surface-tint: #50e304;
+  --color-surface-container-highest: #343439;
+  --color-tertiary-fixed: #ffd7f5;
+  --color-secondary-fixed: #7df4ff;
+  
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-surface-dim);
+  --foreground: var(--color-on-surface);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface-dim);
+  color: var(--color-on-surface);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-glitch-chart {
+  background-image: linear-gradient(rgba(18, 19, 23, 0.8), rgba(18, 19, 23, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQ9QuVGtqG5eXSM0Ch-vvaYwuYhB7fG1NsGSEWh31XPGk1tuK-DUkJVm5CNGWQTKsoU8_cjnUbyOw8jQyzFmLo3A0jJU7brtBM2qQPUShsd4wuvpn-vPiLZC_hwM-lHMacHbchYIq6zO9s6G0tZ1W-7qhxJjH6wP7nHQ2jPdcXb8n3sOvxZ0tbmNNcXUntDY0fjQ1qOFhuFnajeXYBkZuZFbWFo_YNbL86ADtYKa7RK5nTXq-RrVgla8WLVw9UFt0TkEyj_kOE_1JO");
+  background-size: cover;
+  background-position: center;
+}
+
+.liquid-gradient {
+  background: linear-gradient(135deg, var(--color-primary-container), var(--color-primary-fixed-dim));
+}
+
+.neon-glow {
+  box-shadow: 0 0 32px 0 rgba(108, 255, 50, 0.06);
 }
