@@ -27,7 +27,8 @@ export default function DashboardPage() {
       const dataUrl = await toPng(el, { 
         pixelRatio: 2, 
         backgroundColor: '#0f172a',
-        style: { transform: 'none' }
+        style: { transform: 'none' },
+        skipFonts: true
       });
       
       const link = document.createElement('a');
