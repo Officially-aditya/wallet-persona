@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import html2canvas from 'html2canvas';
 
 export default function DashboardPage() {
   const [persona, setPersona] = useState<any>(null);
@@ -24,23 +23,16 @@ export default function DashboardPage() {
         return;
       }
       
-      // Temporary style adjustments for html2canvas compatibility
-      const originalTransform = el.style.transform;
-      el.style.transform = 'none';
-      
-      const canvas = await html2canvas(el, { 
-        scale: 2, 
-        backgroundColor: '#0f172a', 
-        useCORS: true,
-        allowTaint: true,
-        logging: true
+      const { toPng } = await import('html-to-image');
+      const dataUrl = await toPng(el, { 
+        pixelRatio: 2, 
+        backgroundColor: '#0f172a',
+        style: { transform: 'none' }
       });
       
-      el.style.transform = originalTransform;
-
       const link = document.createElement('a');
       link.download = 'wallet-persona.png';
-      link.href = canvas.toDataURL('image/png', 1.0);
+      link.href = dataUrl;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
-import html2canvas from 'html2canvas';
 import { PersonaCard } from '@/components/PersonaCard';
 
 interface PersonaData {
@@ -154,21 +153,6 @@ export default function Home() {
       setErrorMsg(err.message || 'Error');
       setAppState('ERROR');
     }
-  };
-
-  const downloadCard = async () => {
-    const el = document.getElementById('persona-card');
-    if (!el) return;
-    const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#0f172a', useCORS: true });
-    const link = document.createElement('a');
-    link.download = 'wallet-persona.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
-
-  const shareOnX = () => {
-    if (!persona) return;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I am "${persona.archetype}"!`)}`, '_blank');
   };
 
   if (appState === 'LOADING') {
