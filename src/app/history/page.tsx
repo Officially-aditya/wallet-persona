@@ -16,8 +16,10 @@ export default function HistoryPage() {
   const { address } = useAccount();
   const [mounted, setMounted] = useState(false);
   const [isGhost, setIsGhost] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   useEffect(() => {
+    setIsDemoMode(localStorage.getItem('isDemoMode') === 'true');
     const savedPersona = localStorage.getItem('persona');
     if (savedPersona) {
       try {
@@ -50,7 +52,7 @@ export default function HistoryPage() {
           A glorious record of your financial decisions. Most recent token swaps and trades involving <span className="text-[#6cff32]">Four.meme</span> tokens.
         </p>
 
-        {mounted && address ? (
+        {mounted && (address || isDemoMode) ? (
           isGhost ? (
             <div className="text-center py-24 w-full bg-[#1a1b1f] rounded-xl border border-[#ffb4ab]/30 flex flex-col items-center justify-center gap-4">
               <span className="text-6xl">👻</span>
