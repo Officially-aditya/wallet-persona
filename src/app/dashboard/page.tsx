@@ -17,13 +17,36 @@ export default function DashboardPage() {
   }, []);
 
   const downloadCard = async () => {
-    const el = document.getElementById('persona-card');
-    if (!el) return;
-    const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#0f172a', useCORS: true });
-    const link = document.createElement('a');
-    link.download = 'wallet-persona.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    try {
+      const el = document.getElementById('persona-card');
+      if (!el) {
+        console.error('Card element not found');
+        return;
+      }
+      
+      // Temporary style adjustments for html2canvas compatibility
+      const originalTransform = el.style.transform;
+      el.style.transform = 'none';
+      
+      const canvas = await html2canvas(el, { 
+        scale: 2, 
+        backgroundColor: '#0f172a', 
+        useCORS: true,
+        allowTaint: true,
+        logging: true
+      });
+      
+      el.style.transform = originalTransform;
+
+      const link = document.createElement('a');
+      link.download = 'wallet-persona.png';
+      link.href = canvas.toDataURL('image/png', 1.0);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('Error generating image:', err);
+    }
   };
 
   const shareOnX = () => {
